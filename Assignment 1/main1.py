@@ -5,6 +5,7 @@ import plot
 import costfunction
 import gradientdes
 from mpl_toolkits.mplot3d import Axes3D 
+import j_plot
 
 data = pd.read_csv('Data/ex1data1.txt', header = None) #read from dataset
 X = data.iloc[:,0] # read first column
@@ -24,6 +25,7 @@ alpha = 0.01
 ones = np.ones((m,1))
 X = np.hstack((ones, X)) # adding the intercept term
 
+
 J = costfunction.cost(X, y, theta)
 print(J)
 
@@ -33,11 +35,7 @@ print(theta)
 J = costfunction.cost(X, y, theta)
 print(J)
 
-plt.scatter(X[:,1], y, marker='x', color='r')
-plt.xlabel('Population of City in 10,000s')
-plt.ylabel('Profit in $10,000s')
-plt.plot(X[:,1], np.dot(X, theta))
-plt.show()
+plot.plotdata(X,y,theta)
 
 predict1 = np.dot([1, 3.5], theta)
 print('For population = 35,000, we predict a profit of')
@@ -48,6 +46,6 @@ print('For population = 70,000, we predict a profit of')
 print(predict2*10000)
 
 
-
+j_plot.j_plot(X, y, theta)
 
 

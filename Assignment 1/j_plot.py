@@ -28,12 +28,15 @@ def j_plot(X,y, theta):
     plt.xlabel('theta0')
     plt.ylabel('theta1')
     plt.title('Surface')
+    
 
     # contour plot
     # Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100
+   # breaks = np.logspace(-2, 3, 20)
     ax = plt.subplot(122)
-    plt.contour(theta0_vals, theta1_vals, J_vals, linewidths=2, cmap='viridis', levels=np.logspace(-2, 3, 20))
+    plt.contour(theta0_vals, theta1_vals, J_vals,linewidths=1, cmap='viridis' )  
     plt.xlabel('theta0')
     plt.ylabel('theta1')
-    plt.plot(theta[0], theta[1], 'ro', ms=10, lw=2)
+    plt.plot(theta[0], theta[1], 'rx', ms=10, lw=2)
     plt.title('Contour, showing minimum')
+    plt.show()

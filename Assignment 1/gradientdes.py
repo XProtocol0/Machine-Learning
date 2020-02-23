@@ -5,9 +5,9 @@ def gradientDescent(X, y, theta, alpha, iterations):
     m=len(y)
     J_history=[]
     for _ in range(iterations):
-        temp = np.dot(X, theta) - y
-        temp = np.dot(X.transpose(), temp)
-        theta = theta - (alpha/m) * temp
+        jtheta = np.dot(X, theta) - y
+        jtheta = np.dot(X.transpose(), jtheta)
+        theta = theta - (alpha/m) * jtheta
         J_history.append(costfunction.cost(X,y,theta))
     return theta, J_history
 
