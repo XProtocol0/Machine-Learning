@@ -1,9 +1,11 @@
 import numpy as np
 import pandas as pd
 import scipy.optimize as op
+import matplotlib.pyplot as plt
 import plot
 import costfunction
 import gradient
+import accuracy
 
 
 data = pd.read_csv('Data/ex2data1.txt', header = None)
@@ -51,3 +53,13 @@ temp = op.fmin_tnc(func = costfunction.cost, x0 = theta.flatten(), fprime = grad
 #the output of above function is a tuple whose first element #contains the optimized values of theta
 theta_optimized = temp[0]
 print(theta_optimized)
+
+
+#theta_optimized = theta_optimized[:, np.newaxis]
+J = costfunction.cost(theta_optimized[:, np.newaxis], X, y)
+print(J)
+
+
+plot.plotboundary(X, y, theta_optimized)
+
+accuracy.accuracy(X, y.flatten(), theta_optimized)
