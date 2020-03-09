@@ -13,12 +13,12 @@ m=len(y)
 
 print(data.head())
 
-#plot.plotdata(X,y)
+plot.plotdata(X,y)
 
-#y = y[:, np.newaxis]
-
-#ones = np.ones((m,1))
-#X = np.hstack((ones, X))
+(m, n) = X.shape
+y = y[:, np.newaxis]
+ones = np.ones((m,1))
+X = np.hstack((ones, X))
 #theta = np.zeros((X.shape[1],1))
 
 #c = costfunction.cost(X, y, theta)
@@ -39,9 +39,9 @@ print(data.head())
 #Result = op.minimize(fun = costfunction.cost, x0 = initial_theta, args =(X, y), method = 'TNC', jac = gradient.grad)
 #optimal_theta = Result.x
 
-(m, n) = X.shape
-X = np.hstack((np.ones((m,1)), X))
-y = y[:, np.newaxis]
+#(m, n) = X.shape
+#X = np.hstack((np.ones((m,1)), X))
+#y = y[:, np.newaxis]
 theta = np.zeros((n+1,1)) # intializing theta with all zeros
 J = costfunction.cost(theta,X, y)
 print(J)
