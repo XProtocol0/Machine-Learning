@@ -4,6 +4,8 @@ import sigmoid
 
 def cost(theta, X, y, greek_lambda):
     m = len(y)
-    temp1 = np.multiply(y, np.log(sigmoid.sig(np.dot(X, theta))))
-    temp2 = np.multiply(1-y, np.log(1-sigmoid.sig(np.dot(X, theta))))
-    return np.sum(temp1 + temp2) / (-m) + np.sum(theta[1:]**2) * greek_lambda / (2*m)
+    h = sigmoid.sig(X @ theta)
+    c = sum((y * np.log(h)) + ((1-y) * np.log(1-h)))/(-m)
+    regularized_c= c + greek_lambda/(2*m)*sum(theta[1:]**2)
+    #print(np.shape(regularized_c))
+    return regularized_c
