@@ -5,5 +5,6 @@ def predict(all_theta, X):
     X = np. hstack((np.ones((m,1)),X))
 
     pred = X @ all_theta.T
-
+    
     return np.argmax(pred, axis = 1) + 1
+    

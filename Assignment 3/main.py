@@ -10,14 +10,14 @@ import predict
 
 data = loadmat('Data/ex3data1.mat')
 X = data['X']
-y = data['y'].ravel()
-y[y== 10] = 0
+y = data['y']
+#y[y== 10] = 0
 
-m, _ = np.shape(X)
+#m, _ = np.shape(X)
 
-y = y.reshape(m,1)
+#y = y.reshape(m, 1)
 
-print (y)
+#print (y)
 
 _, axis = plt.subplots(5,5,figsize=(5,5))
 for i in range(5):
@@ -27,7 +27,7 @@ for i in range(5):
 plt.show()
 
 
-#m = len(y)
+m = len(y)
 ones = np.ones((m,1))
 X = np.hstack((ones, X)) #add the intercep
 
@@ -69,7 +69,7 @@ grad = gradient.gradient(temp_theta, temp_X, temp_y, 3)
 print(grad)
 
 print("Running gradient descent...(estimated 5 seconds)")
-greek_lambda = 1
+greek_lambda = 0.1
 num_labels = 10
 all_theta, all_J = onevsall.onevall(X, y, num_labels, greek_lambda)
 

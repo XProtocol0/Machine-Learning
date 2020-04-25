@@ -3,7 +3,7 @@ import costfunction
 import gradient
 
 def graddes(theta, X, y, alpha, num_iters, greek_lambda):
-    
+   # print(y)
     J_history = []
 
     for _ in range(num_iters):
