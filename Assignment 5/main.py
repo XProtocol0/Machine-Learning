@@ -102,7 +102,7 @@ plt.scatter(X,y,marker="x",color="r")
 plt.xlabel("Change in water level")
 plt.ylabel("Water flowing out of the dam")
 x_value=np.linspace(-55,65,2400)
-plt.show()
+
 # Map the X values and normalize
 x_value_poly = polyFeatures.polyFeatures(x_value[:,np.newaxis], p)
 x_value_poly = sc_X.transform(x_value_poly)
