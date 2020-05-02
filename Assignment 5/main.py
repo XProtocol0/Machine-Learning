@@ -110,3 +110,44 @@ x_value_poly = np.hstack((np.ones((x_value_poly.shape[0],1)),x_value_poly))
 y_value= x_value_poly @ theta_poly
 plt.plot(x_value,y_value,"--",color="b")
 plt.show()
+
+
+
+# LATER---------------------------------------------------------------------------------------------------------
+
+
+error_train, error_val = learningCurve(X_poly, y, X_poly_val, yval, Lambda)
+
+plt.plot(range(12),error_train,label="Train")
+plt.plot(range(12),error_val,label="Cross Validation",color="r")
+plt.title("Learning Curve for Linear Regression")
+plt.xlabel("Number of training examples")
+plt.ylabel("Error")
+plt.legend()
+
+Lambda = 100
+theta_poly, J_history_poly = gradientDescent(X_poly,y,np.zeros((9,1)),0.01,20000,Lambda)
+
+
+plt.scatter(X,y,marker="x",color="r")
+plt.xlabel("Change in water level")
+plt.ylabel("Water flowing out of the dam")
+x_value=np.linspace(-55,65,2400)
+
+# Map the X values and normalize
+x_value_poly = polyFeatures(x_value[:,np.newaxis], p)
+x_value_poly = sc_X.transform(x_value_poly)
+x_value_poly = np.hstack((np.ones((x_value_poly.shape[0],1)),x_value_poly))
+y_value= x_value_poly @ theta_poly
+plt.plot(x_value,y_value,"--",color="b")
+
+
+
+error_train, error_val = learningCurve(X_poly, y, X_poly_val, yval, Lambda)
+
+plt.plot(range(12),error_train,label="Train")
+plt.plot(range(12),error_val,label="Cross Validation",color="r")
+plt.title("Learning Curve for Linear Regression")
+plt.xlabel("Number of training examples")
+plt.ylabel("Error")
+plt.legend()
