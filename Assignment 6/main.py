@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.optimize as op
 from sklearn.svm import SVC
+import dataset3Params
 
 data = loadmat('Data/ex6data1.mat')
 
@@ -110,5 +111,23 @@ yval = mat3["yval"]
 m3,n3 = X3.shape[0],X3.shape[1]
 pos3,neg3= (y3==1).reshape(m3,1), (y3==0).reshape(m3,1)
 plt.figure(figsize=(8,6))
-plt.scatter(X3[pos3[:,0],0],X3[pos3[:,0],1],c='#000000',marker='+')
-plt.scatter(X3[neg3[:,0],0],X3[neg3[:,0],1],c='#f5f242', marker='o', edgecolors='#000000')
+plt.scatter(X3[pos3[:,0],0],X3[pos3[:,0],1], c='#000000', marker='+')
+plt.scatter(X3[neg3[:,0],0],X3[neg3[:,0],1], c='#f5f242', marker='o', edgecolors='#000000')
+
+values = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
+C, gamma = dataset3Params.dataset3Params(X3, y3.ravel(), Xval, yval.ravel(),values)
+classifier4 = SVC(C=C, gamma=gamma)
+classifier4.fit(X3,y3.ravel())
+
+
+
+plt.figure(figsize=(8,6))
+plt.scatter(X3[pos3[:,0],0],X3[pos3[:,0],1], c='#000000', marker="+")
+plt.scatter(X3[neg3[:,0],0],X3[neg3[:,0],1], c='#f5f242', marker='o', edgecolors='#000000')
+
+# plotting the decision boundary
+X_7,X_8 = np.meshgrid(np.linspace(X3[:,0].min(),X3[:,0].max(),num=100),np.linspace(X3[:,1].min(),X3[:,1].max(),num=100))
+plt.contour(X_7,X_8,classifier4.predict(np.array([X_7.ravel(),X_8.ravel()]).T).reshape(X_7.shape),1,colors="b")
+plt.xlim(-0.6,0.3)
+plt.ylim(-0.7,0.5)
+plt.show()
